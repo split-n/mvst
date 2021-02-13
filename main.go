@@ -31,9 +31,12 @@ func main() {
 	targetPath := filepath.Join(dstBase, targetRelPath)
 	targetDir := filepath.Join(dstBase, filepath.Dir(targetRelPath))
 
-	//os.MkdirAll(targetDir)
+	os.MkdirAll(targetDir, os.ModePerm)
 
-	//os.Rename(mvTargetAbs, targetPath)
+	err = os.Rename(mvTargetAbs, targetPath)
+	if err != nil {
+		log.Fatalln(err)
+	}
 
 	fmt.Println(targetDir)
 	fmt.Println(targetPath)
